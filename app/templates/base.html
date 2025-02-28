@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Advisor</title>
     <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .user-message {
             background: var(--bs-dark);
@@ -26,7 +27,35 @@
             margin: 5px 0;
             opacity: 0.8;
         }
+        footer {
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        .footer-link {
+            color: var(--bs-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-link:hover {
+            color: var(--bs-primary);
+        }
+        .social-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: var(--bs-dark);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background: var(--bs-primary);
+            transform: translateY(-3px);
+        }
     </style>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -88,6 +117,62 @@
 
     {% block content %}{% endblock %}
 
+    <!-- Enhanced Footer -->
+    <footer class="bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Career Advisor</h4>
+                    <p class="text-muted">Empowering your career journey with AI-driven insights and guidance.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="footer-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('main.index') }}" class="footer-link">Home</a></li>
+                        <li><a href="{{ url_for('main.assessment') }}" class="footer-link">Assessment</a></li>
+                        <li><a href="{{ url_for('main.resources') }}" class="footer-link">Resources</a></li>
+                        <li><a href="{{ url_for('main.contact') }}" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Career Guide</a></li>
+                        <li><a href="#" class="footer-link">Interview Tips</a></li>
+                        <li><a href="#" class="footer-link">Resume Templates</a></li>
+                        <li><a href="#" class="footer-link">Skills Development</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>support@careeradvisor.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>(555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i>Mon-Fri: 9:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Career Advisor. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link me-3">Terms of Service</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

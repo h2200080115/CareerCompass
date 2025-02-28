@@ -169,3 +169,18 @@ def apply_job(career_id):
 @login_required
 def resources():
     return render_template('resources.html')
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+    try:
+        if request.method == 'POST':
+            # Here you would typically handle the form submission
+            # For now, we'll just show a success message
+            flash('Thank you for your message. We will get back to you soon!')
+            return redirect(url_for('main.contact'))
+
+        return render_template('contact.html')
+    except Exception as e:
+        logger.error(f"Error in contact route: {str(e)}")
+        flash('An error occurred while processing your request')
+        return redirect(url_for('main.index'))
