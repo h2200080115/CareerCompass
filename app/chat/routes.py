@@ -3,8 +3,11 @@ from flask_login import login_required
 from . import chat
 import os
 from openai import OpenAI
-from openai import OpenAIError  # Updated import
+import logging
 
+logger = logging.getLogger(__name__)
+
+# Initialize OpenAI client
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 @chat.route('/chat', methods=['POST'])
@@ -49,13 +52,9 @@ def get_response():
             'response': response.choices[0].message.content
         })
 
-    except OpenAIError as e:
+    except Exception as e:
+        logger.error(f"Error in chat route: {str(e)}")
         return jsonify({
             'status': 'error',
             'message': 'Failed to get response from AI assistant. Please try again later.'
-        }), 500
-    except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': str(e)
         }), 500
