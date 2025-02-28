@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 from flask_login import login_required
 from . import chat
 import os
@@ -10,9 +10,14 @@ logger = logging.getLogger(__name__)
 # Initialize OpenAI client
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
+@chat.route('/chatbot')
+@login_required
+def chat_route():
+    return render_template('chat.html')
+
 @chat.route('/chat', methods=['POST'])
 @login_required
-def get_response():
+def process_message():
     data = request.get_json()
     user_message = data.get('message')
 
