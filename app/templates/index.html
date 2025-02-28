@@ -27,12 +27,12 @@
 </div>
 
 <!-- Features Section -->
-<section class="py-5">
+<section class="py-5 bg-dark text-light">
     <div class="container">
         <h2 class="text-center mb-5">Why Choose Career Advisor?</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body text-center">
                         <div class="feature-icon mb-4">
                             <i class="fas fa-brain fa-3x text-primary"></i>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body text-center">
                         <div class="feature-icon mb-4">
                             <i class="fas fa-chart-line fa-3x text-success"></i>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body text-center">
                         <div class="feature-icon mb-4">
                             <i class="fas fa-graduation-cap fa-3x text-info"></i>
@@ -69,7 +69,7 @@
 </section>
 
 <!-- How It Works -->
-<section class="bg-light py-5">
+<section class="py-5 bg-dark text-light border-top border-secondary">
     <div class="container">
         <h2 class="text-center mb-5">How It Works</h2>
         <div class="row">
@@ -114,42 +114,42 @@
 </section>
 
 <!-- Success Stories -->
-<section class="py-5">
+<section class="py-5 bg-dark text-light">
     <div class="container">
         <h2 class="text-center mb-5">Success Stories</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Sarah Johnson</h5>
                         </div>
-                        <p class="card-text">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science. The AI-powered recommendations were spot-on!"</p>
+                        <p class="card-text text-muted">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science. The AI-powered recommendations were spot-on!"</p>
                         <p class="text-muted mb-0">Data Scientist at Tech Corp</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Michael Chen</h5>
                         </div>
-                        <p class="card-text">"The learning resources and career guidance helped me transition from marketing to UX design. I'm now working at my dream company!"</p>
+                        <p class="card-text text-muted">"The learning resources and career guidance helped me transition from marketing to UX design. I'm now working at my dream company!"</p>
                         <p class="text-muted mb-0">UX Designer at Design Studio</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card h-100 bg-dark border-secondary">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Emily Rodriguez</h5>
                         </div>
-                        <p class="card-text">"The personalized learning path and mentorship connections helped me advance my career in software development."</p>
+                        <p class="card-text text-muted">"The personalized learning path and mentorship connections helped me advance my career in software development."</p>
                         <p class="text-muted mb-0">Senior Developer at StartUp Inc</p>
                     </div>
                 </div>
@@ -170,33 +170,6 @@
         {% endif %}
     </div>
 </section>
-
-<!-- Footer -->
-<footer class="bg-dark text-light py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Career Advisor</h5>
-                <p>Empowering your career journey with AI-driven insights and guidance.</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="{{ url_for('main.assessment') }}" class="text-light">Assessments</a></li>
-                    <li><a href="{{ url_for('main.resources') }}" class="text-light">Resources</a></li>
-                    <li><a href="#" class="text-light">About Us</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Contact</h5>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-envelope me-2"></i>support@careeradvisor.com</li>
-                    <li><i class="fas fa-phone me-2"></i>(555) 123-4567</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 {% endblock %}
 
 {% block extra_css %}
@@ -206,7 +179,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: var(--bs-dark);
+    background: var(--bs-darker);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,7 +189,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--bs-dark);
+    background: var(--bs-darker);
     display: flex;
     align-items: center;
     justify-content: center;
