@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4">Welcome to Career Advisor</h1>
+            <p class="lead">Your AI-powered career guidance platform</p>
+            
+            {% if not current_user.is_authenticated %}
+            <div class="mt-4">
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary me-2">Login</a>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-outline-secondary">Register</a>
+            </div>
+            {% else %}
+            <div class="mt-4">
+                <a href="{{ url_for('main.assessment') }}" class="btn btn-primary">Take Assessment</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Our Features</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">📊 Comprehensive Skills Assessment</li>
+                        <li class="mb-2">💡 Personalized Career Recommendations</li>
+                        <li class="mb-2">📚 Curated Learning Resources</li>
+                        <li class="mb-2">🤖 AI Career Assistant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

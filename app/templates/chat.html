@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Career Assistant</h5>
+                    <div id="chat-messages" class="mb-4" style="height: 400px; overflow-y: auto;">
+                        <div class="system-message">
+                            Hello! I'm your career assistant. How can I help you today?
+                        </div>
+                    </div>
+                    
+                    <form id="chat-form" class="d-flex">
+                        <input type="text" id="user-input" class="form-control me-2" placeholder="Type your message...">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

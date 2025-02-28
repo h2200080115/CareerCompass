@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Creative Skills Assessment</h2>
+    
+    <form id="assessment-form" class="mt-4">
+        <div class="questions">
+            <!-- Questions will be dynamically loaded -->
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-4">Submit Assessment</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/assessment.js') }}"></script>
+<script>
+    const creativeQuestions = [
+        {
+            id: 1,
+            question: "How would you approach creating a unique brand identity for a new product?",
+            type: "text"
+        },
+        {
+            id: 2,
+            question: "Which design tools are you familiar with?",
+            type: "multiple",
+            options: ["Adobe Creative Suite", "Figma", "Sketch", "Canva", "Other"]
+        },
+        // Add more questions
+    ];
+    
+    initializeAssessment('creative', creativeQuestions);
+</script>
+{% endblock %}

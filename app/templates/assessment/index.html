@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Career Assessment</h1>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Technical Assessment</h5>
+                    <p class="card-text">Evaluate your technical skills and problem-solving abilities.</p>
+                    <a href="{{ url_for('main.take_assessment', type='technical') }}" class="btn btn-primary">Start</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Creative Assessment</h5>
+                    <p class="card-text">Measure your creative thinking and design capabilities.</p>
+                    <a href="{{ url_for('main.take_assessment', type='creative') }}" class="btn btn-primary">Start</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Interpersonal Assessment</h5>
+                    <p class="card-text">Assess your communication and collaboration skills.</p>
+                    <a href="{{ url_for('main.take_assessment', type='interpersonal') }}" class="btn btn-primary">Start</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
