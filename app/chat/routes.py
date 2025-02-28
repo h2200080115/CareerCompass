@@ -7,7 +7,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Initialize OpenAI client
+# Initialize OpenAI client with API key
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 @chat.route('/chatbot')
@@ -18,25 +18,19 @@ def chat_route():
 @chat.route('/chat', methods=['POST'])
 @login_required
 def process_message():
-    data = request.get_json()
-    user_message = data.get('message')
-
-    if not user_message:
-        return jsonify({
-            'status': 'error',
-            'message': 'No message provided'
-        }), 400
-
     try:
-        # Check if API key is configured
-        if not os.environ.get('OPENAI_API_KEY'):
+        data = request.get_json()
+        user_message = data.get('message')
+
+        if not user_message:
             return jsonify({
                 'status': 'error',
-                'message': 'OpenAI API key not configured'
-            }), 500
+                'message': 'No message provided'
+            }), 400
 
+        # Create chat completion with the AI model
         response = client.chat.completions.create(
-            model="gpt-4o",  # Latest model as of May 2024
+            model="gpt-3.5-turbo",  # Using a stable model version
             messages=[
                 {
                     "role": "system",
@@ -49,7 +43,9 @@ def process_message():
                     5. Professional development tips"""
                 },
                 {"role": "user", "content": user_message}
-            ]
+            ],
+            temperature=0.7,
+            max_tokens=150
         )
 
         return jsonify({
