@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <h1 class="display-4">Welcome to Career Advisor</h1>
             <p class="lead">Your AI-powered career guidance platform</p>
-            
+
             {% if not current_user.is_authenticated %}
             <div class="mt-4">
                 <a href="{{ url_for('auth.login') }}" class="btn btn-primary me-2">Login</a>
@@ -21,16 +21,127 @@
         <div class="col-md-6">
             <div class="card bg-dark">
                 <div class="card-body">
-                    <h5 class="card-title">Our Features</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">📊 Comprehensive Skills Assessment</li>
-                        <li class="mb-2">💡 Personalized Career Recommendations</li>
-                        <li class="mb-2">📚 Curated Learning Resources</li>
-                        <li class="mb-2">🤖 AI Career Assistant</li>
-                    </ul>
+                    <h5 class="card-title text-center mb-4">How It Works</h5>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-clipboard-check fa-2x me-3"></i>
+                        <div>
+                            <h6 class="mb-1">Take Assessment</h6>
+                            <p class="mb-0 text-muted">Complete our comprehensive skills assessment</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-chart-line fa-2x me-3"></i>
+                        <div>
+                            <h6 class="mb-1">Get Insights</h6>
+                            <p class="mb-0 text-muted">Receive personalized career recommendations</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-graduation-cap fa-2x me-3"></i>
+                        <div>
+                            <h6 class="mb-1">Learn & Grow</h6>
+                            <p class="mb-0 text-muted">Access curated learning resources</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Features Section -->
+    <section class="mt-5">
+        <h2 class="text-center mb-4">Our Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-brain fa-3x mb-3"></i>
+                        <h5 class="card-title">AI-Powered Analysis</h5>
+                        <p class="card-text">Get intelligent career recommendations based on your skills and interests</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-comments fa-3x mb-3"></i>
+                        <h5 class="card-title">Career Chat Assistant</h5>
+                        <p class="card-text">Get instant answers to your career-related questions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-road fa-3x mb-3"></i>
+                        <h5 class="card-title">Learning Paths</h5>
+                        <p class="card-text">Access customized learning resources and career development plans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="mt-5">
+        <h2 class="text-center mb-4">Success Stories</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science."</p>
+                        <footer class="blockquote-footer mt-2">Sarah J., Data Scientist</footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"The AI chat assistant provided valuable guidance for my career transition into software development."</p>
+                        <footer class="blockquote-footer mt-2">Michael R., Software Engineer</footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"The learning resources helped me acquire the skills needed for my dream job in UX design."</p>
+                        <footer class="blockquote-footer mt-2">Emma L., UX Designer</footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+
+<!-- Footer -->
+<footer class="bg-dark text-light mt-5 py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Career Advisor</h5>
+                <p>Empowering your career journey with AI-driven insights and guidance.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ url_for('main.assessment') }}" class="text-light">Assessments</a></li>
+                    <li><a href="{{ url_for('main.resources') }}" class="text-light">Resources</a></li>
+                    <li><a href="#" class="text-light">About Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope me-2"></i>support@careeradvisor.com</li>
+                    <li><i class="fas fa-phone me-2"></i>(555) 123-4567</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 {% endblock %}

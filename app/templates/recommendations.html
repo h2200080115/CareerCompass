@@ -2,30 +2,87 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Your Career Recommendations</h1>
-    
-    <div class="row mt-4">
+    <h1 class="mb-4">Your Career Recommendations</h1>
+
+    <div class="row">
+        <!-- Skills Analysis -->
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Skills Analysis</h5>
                     <canvas id="skillsChart"></canvas>
+
+                    <div class="mt-4">
+                        <h6>Your Strengths</h6>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ (technical_score/100)*100 }}%" 
+                                 aria-valuenow="{{ technical_score }}" aria-valuemin="0" aria-valuemax="100">
+                                Technical ({{ "%.1f"|format(technical_score) }}%)
+                            </div>
+                        </div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ (creative_score/100)*100 }}%" 
+                                 aria-valuenow="{{ creative_score }}" aria-valuemin="0" aria-valuemax="100">
+                                Creative ({{ "%.1f"|format(creative_score) }}%)
+                            </div>
+                        </div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ (interpersonal_score/100)*100 }}%" 
+                                 aria-valuenow="{{ interpersonal_score }}" aria-valuemin="0" aria-valuemax="100">
+                                Interpersonal ({{ "%.1f"|format(interpersonal_score) }}%)
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
+        <!-- Career Recommendations -->
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Recommended Career Paths</h5>
-                    
+                    <h5 class="card-title mb-4">Recommended Career Paths</h5>
+
                     {% for career in careers %}
-                    <div class="career-item mb-4">
-                        <h6>{{ career.title }}</h6>
+                    <div class="career-item mb-4 p-3 border rounded">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4>{{ career.title }}</h4>
+                                <p class="text-muted mb-2">{{ career.salary_range }}</p>
+                            </div>
+                            <span class="badge bg-primary">{{ "%.1f"|format(career.match_score * 100) }}% Match</span>
+                        </div>
+
                         <p>{{ career.description }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-info">Match Score: {{ career.match_score }}%</span>
-                            <button class="btn btn-sm btn-primary">Apply Now</button>
+
+                        <div class="mb-3">
+                            <h6>Required Skills</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for skill in career.required_skills %}
+                                <span class="badge bg-secondary">{{ skill }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Growth Potential</h6>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" 
+                                     style="width: {{ (career.growth_potential * 100)|round }}%">
+                                    {{ (career.growth_potential * 100)|round }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button class="btn btn-outline-primary btn-sm" 
+                                    onclick="showCareerDetails('{{ career.id }}')">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                            <a href="{{ url_for('main.apply_job', career_id=career.id) }}" 
+                               class="btn btn-primary btn-sm">
+                                <i class="fas fa-paper-plane"></i> Apply Now
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
@@ -35,6 +92,24 @@
     </div>
 </div>
 
+<!-- Career Details Modal -->
+<div class="modal fade" id="careerDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Career Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Initialize skills chart
@@ -46,9 +121,9 @@
             datasets: [{
                 label: 'Your Skills',
                 data: [
-                    {% for assessment in assessments %}
-                        {{ assessment.score }},
-                    {% endfor %}
+                    {{ technical_score }},
+                    {{ creative_score }},
+                    {{ interpersonal_score }}
                 ],
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
@@ -56,5 +131,10 @@
             }]
         }
     });
+
+    function showCareerDetails(careerId) {
+        // Add AJAX call to fetch career details
+        $('#careerDetailsModal').modal('show');
+    }
 </script>
 {% endblock %}
