@@ -1,121 +1,178 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h1 class="display-4">Welcome to Career Advisor</h1>
-            <p class="lead">Your AI-powered career guidance platform</p>
-
-            {% if not current_user.is_authenticated %}
-            <div class="mt-4">
-                <a href="{{ url_for('auth.login') }}" class="btn btn-primary me-2">Login</a>
-                <a href="{{ url_for('auth.register') }}" class="btn btn-outline-secondary">Register</a>
+<!-- Hero Section -->
+<div class="container-fluid bg-dark text-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bold mb-4">Discover Your Perfect Career Path</h1>
+                <p class="lead mb-4">Using AI-powered assessments and personalized guidance to help you find your dream career.</p>
+                {% if not current_user.is_authenticated %}
+                <div class="mb-4">
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-outline-light btn-lg">Learn More</a>
+                </div>
+                {% else %}
+                <div class="mb-4">
+                    <a href="{{ url_for('main.assessment') }}" class="btn btn-primary btn-lg">Take Assessment</a>
+                </div>
+                {% endif %}
             </div>
-            {% else %}
-            <div class="mt-4">
-                <a href="{{ url_for('main.assessment') }}" class="btn btn-primary">Take Assessment</a>
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/career-path.svg') }}" alt="Career Path" class="img-fluid">
             </div>
-            {% endif %}
         </div>
-        <div class="col-md-6">
-            <div class="card bg-dark">
-                <div class="card-body">
-                    <h5 class="card-title text-center mb-4">How It Works</h5>
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-clipboard-check fa-2x me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Take Assessment</h6>
-                            <p class="mb-0 text-muted">Complete our comprehensive skills assessment</p>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose Career Advisor?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-brain fa-3x text-primary"></i>
                         </div>
+                        <h4>AI-Powered Analysis</h4>
+                        <p class="text-muted">Advanced algorithms analyze your skills, interests, and personality to provide tailored career recommendations.</p>
                     </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-chart-line fa-2x me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Get Insights</h6>
-                            <p class="mb-0 text-muted">Receive personalized career recommendations</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-chart-line fa-3x text-success"></i>
                         </div>
+                        <h4>Career Tracking</h4>
+                        <p class="text-muted">Monitor your progress and growth with detailed analytics and personalized insights.</p>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-graduation-cap fa-2x me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Learn & Grow</h6>
-                            <p class="mb-0 text-muted">Access curated learning resources</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-graduation-cap fa-3x text-info"></i>
                         </div>
+                        <h4>Learning Resources</h4>
+                        <p class="text-muted">Access curated educational content and resources to help you achieve your career goals.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="mt-5">
-        <h2 class="text-center mb-4">Our Features</h2>
+<!-- How It Works -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-user-plus fa-2x text-primary"></i>
+                    </div>
+                    <h5>1. Create Account</h5>
+                    <p class="text-muted">Sign up and complete your profile</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-clipboard-check fa-2x text-primary"></i>
+                    </div>
+                    <h5>2. Take Assessment</h5>
+                    <p class="text-muted">Complete our comprehensive skills assessment</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                    </div>
+                    <h5>3. Get Insights</h5>
+                    <p class="text-muted">Receive personalized career recommendations</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-rocket fa-2x text-primary"></i>
+                    </div>
+                    <h5>4. Take Action</h5>
+                    <p class="text-muted">Apply to jobs and track your progress</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Stories -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Success Stories</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-brain fa-3x mb-3"></i>
-                        <h5 class="card-title">AI-Powered Analysis</h5>
-                        <p class="card-text">Get intelligent career recommendations based on your skills and interests</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Sarah Johnson</h5>
+                        </div>
+                        <p class="card-text">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science. The AI-powered recommendations were spot-on!"</p>
+                        <p class="text-muted mb-0">Data Scientist at Tech Corp</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-comments fa-3x mb-3"></i>
-                        <h5 class="card-title">Career Chat Assistant</h5>
-                        <p class="card-text">Get instant answers to your career-related questions</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Michael Chen</h5>
+                        </div>
+                        <p class="card-text">"The learning resources and career guidance helped me transition from marketing to UX design. I'm now working at my dream company!"</p>
+                        <p class="text-muted mb-0">UX Designer at Design Studio</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-road fa-3x mb-3"></i>
-                        <h5 class="card-title">Learning Paths</h5>
-                        <p class="card-text">Access customized learning resources and career development plans</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Emily Rodriguez</h5>
+                        </div>
+                        <p class="card-text">"The personalized learning path and mentorship connections helped me advance my career in software development."</p>
+                        <p class="text-muted mb-0">Senior Developer at StartUp Inc</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Success Stories -->
-    <section class="mt-5">
-        <h2 class="text-center mb-4">Success Stories</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science."</p>
-                        <footer class="blockquote-footer mt-2">Sarah J., Data Scientist</footer>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"The AI chat assistant provided valuable guidance for my career transition into software development."</p>
-                        <footer class="blockquote-footer mt-2">Michael R., Software Engineer</footer>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"The learning resources helped me acquire the skills needed for my dream job in UX design."</p>
-                        <footer class="blockquote-footer mt-2">Emma L., UX Designer</footer>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+<!-- Call to Action -->
+<section class="bg-primary text-light text-center py-5">
+    <div class="container">
+        <h2 class="mb-4">Ready to Start Your Career Journey?</h2>
+        <p class="lead mb-4">Join thousands of professionals who found their dream careers through Career Advisor.</p>
+        {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('auth.register') }}" class="btn btn-light btn-lg">Get Started Now</a>
+        {% else %}
+        <a href="{{ url_for('main.assessment') }}" class="btn btn-light btn-lg">Take Assessment</a>
+        {% endif %}
+    </div>
+</section>
 
 <!-- Footer -->
-<footer class="bg-dark text-light mt-5 py-4">
+<footer class="bg-dark text-light py-4">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -144,4 +201,26 @@
 
 {% block extra_css %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bs-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.step-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bs-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+</style>
 {% endblock %}

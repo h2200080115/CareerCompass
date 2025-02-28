@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- User Info -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 100px; height: 100px;">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    <h4>{{ current_user.username }}</h4>
+                    <p class="text-muted">{{ current_user.email }}</p>
+                    <p class="text-muted">Member since {{ current_user.created_at.strftime('%B %Y') }}</p>
+                </div>
+            </div>
+            
+            <!-- Assessment Progress -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Assessment Progress</h5>
+                    <div class="list-group list-group-flush">
+                        {% for assessment_type in ['technical', 'creative', 'interpersonal'] %}
+                            {% set completed = user_assessments.get(assessment_type, {}).get('completed', false) %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ assessment_type|title }}
+                                {% if completed %}
+                                    <span class="badge bg-success rounded-pill">Completed</span>
+                                {% else %}
+                                    <a href="{{ url_for('main.take_assessment', type=assessment_type) }}" class="btn btn-sm btn-primary">Take</a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Results -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Assessment Results</h5>
+                    
+                    <!-- Skills Radar Chart -->
+                    <div class="mb-4">
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+
+                    <!-- Skills Breakdown -->
+                    <h6 class="mb-3">Skills Breakdown</h6>
+                    {% for skill_type, score in skills_scores.items() %}
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>{{ skill_type|title }}</span>
+                            <span>{{ "%.1f"|format(score) }}%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ score }}%" 
+                                 aria-valuenow="{{ score }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Top Career Matches -->
+                    <h6 class="mt-4 mb-3">Top Career Matches</h6>
+                    <div class="row g-3">
+                        {% for career in career_matches %}
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ career.title }}</h6>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-primary">{{ "%.1f"|format(career.match_score * 100) }}% Match</span>
+                                        <a href="{{ url_for('main.recommendations') }}" class="btn btn-sm btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Initialize radar chart
+    const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Technical', 'Creative', 'Interpersonal'],
+            datasets: [{
+                label: 'Your Skills',
+                data: [
+                    {{ skills_scores.technical }},
+                    {{ skills_scores.creative }},
+                    {{ skills_scores.interpersonal }}
+                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
