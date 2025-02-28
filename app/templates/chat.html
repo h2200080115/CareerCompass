@@ -9,19 +9,140 @@
                     <h5 class="card-title">Career Assistant</h5>
                     <div id="chat-messages" class="mb-4" style="height: 400px; overflow-y: auto;">
                         <div class="system-message">
-                            Hello! I'm your career assistant. How can I help you today?
+                            Hello! I'm your career advisor AI assistant. I can help you with:
+                            <ul>
+                                <li>Career guidance and planning</li>
+                                <li>Skill development recommendations</li>
+                                <li>Industry insights and trends</li>
+                                <li>Interview preparation tips</li>
+                                <li>Resume and portfolio advice</li>
+                            </ul>
+                            How can I assist you today?
                         </div>
                     </div>
-                    
-                    <form id="chat-form" class="d-flex">
-                        <input type="text" id="user-input" class="form-control me-2" placeholder="Type your message...">
-                        <button type="submit" class="btn btn-primary">Send</button>
+
+                    <form id="chat-form" class="d-flex gap-2">
+                        <div class="flex-grow-1 position-relative">
+                            <input type="text" id="user-input" class="form-control" 
+                                   placeholder="Type your message..." required>
+                            <div id="typing-indicator" class="position-absolute bottom-100 start-0 mb-2 d-none">
+                                <small class="text-muted"><i class="fas fa-spinner fa-spin me-1"></i>AI is typing...</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chat-message {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .user-message {
+        background-color: var(--bs-primary);
+        color: white;
+        margin-left: 20%;
+        text-align: right;
+    }
+    .assistant-message {
+        background-color: var(--bs-dark);
+        color: var(--bs-light);
+        margin-right: 20%;
+    }
+    .system-message {
+        background-color: var(--bs-secondary);
+        color: var(--bs-light);
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    #chat-messages {
+        padding: 15px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--bs-gray) var(--bs-dark);
+    }
+    #chat-messages::-webkit-scrollbar {
+        width: 8px;
+    }
+    #chat-messages::-webkit-scrollbar-track {
+        background: var(--bs-dark);
+    }
+    #chat-messages::-webkit-scrollbar-thumb {
+        background-color: var(--bs-gray);
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const chatMessages = document.getElementById('chat-messages');
+const chatForm = document.getElementById('chat-form');
+const userInput = document.getElementById('user-input');
+const typingIndicator = document.getElementById('typing-indicator');
+
+function addMessage(content, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${type}-message`;
+    messageDiv.innerHTML = content;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function sendMessage(message) {
+    try {
+        typingIndicator.classList.remove('d-none');
+
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            addMessage(data.response, 'assistant');
+        } else {
+            addMessage('Sorry, I encountered an error. Please try again.', 'system');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage('Sorry, I encountered an error. Please try again.', 'system');
+    } finally {
+        typingIndicator.classList.add('d-none');
+    }
+}
+
+chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const message = userInput.value.trim();
+    if (message) {
+        addMessage(message, 'user');
+        userInput.value = '';
+        await sendMessage(message);
+    }
+});
+
+// Enable sending message with Enter key
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatForm.dispatchEvent(new Event('submit'));
+    }
+});
+</script>
+{% endblock %}
 
 <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
-{% endblock %}
