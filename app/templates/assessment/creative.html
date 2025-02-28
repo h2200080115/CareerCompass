@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Creative Skills Assessment</h2>
-    
+
     <form id="assessment-form" class="mt-4">
         <div class="questions">
             <!-- Questions will be dynamically loaded -->
         </div>
-        
+
         <button type="submit" class="btn btn-primary mt-4">Submit Assessment</button>
     </form>
 </div>
@@ -18,18 +18,50 @@
     const creativeQuestions = [
         {
             id: 1,
-            question: "How would you approach creating a unique brand identity for a new product?",
+            question: "Describe a creative project you're most proud of. What made it unique?",
             type: "text"
         },
         {
             id: 2,
-            question: "Which design tools are you familiar with?",
+            question: "Which design and creative tools are you familiar with?",
             type: "multiple",
-            options: ["Adobe Creative Suite", "Figma", "Sketch", "Canva", "Other"]
+            options: ["Adobe Creative Suite", "Figma", "Sketch", "Canva", "Blender", "Cinema 4D", "After Effects", "Other"]
         },
-        // Add more questions
+        {
+            id: 3,
+            question: "Rate your ability to think outside the box:",
+            type: "scale",
+            min: 1,
+            max: 5,
+            labels: ["Traditional", "Innovative"]
+        },
+        {
+            id: 4,
+            question: "What types of creative work interest you?",
+            type: "multiple",
+            options: ["UI/UX Design", "Graphic Design", "Animation", "Video Production", "3D Modeling", "Illustration", "Motion Graphics", "Brand Design"]
+        },
+        {
+            id: 5,
+            question: "How do you approach creative blocks or challenges?",
+            type: "text"
+        },
+        {
+            id: 6,
+            question: "Rate your visual storytelling abilities:",
+            type: "scale",
+            min: 1,
+            max: 5,
+            labels: ["Basic", "Advanced"]
+        },
+        {
+            id: 7,
+            question: "Which creative skills would you like to develop further?",
+            type: "multiple",
+            options: ["Color Theory", "Typography", "Layout Design", "Digital Art", "Video Editing", "3D Animation", "Web Design", "Motion Design"]
+        }
     ];
-    
+
     initializeAssessment('creative', creativeQuestions);
 </script>
 {% endblock %}

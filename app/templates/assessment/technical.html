@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Technical Skills Assessment</h2>
-    
+
     <form id="assessment-form" class="mt-4">
         <div class="questions">
             <!-- Questions will be dynamically loaded -->
         </div>
-        
+
         <button type="submit" class="btn btn-primary mt-4">Submit Assessment</button>
     </form>
 </div>
@@ -18,18 +18,50 @@
     const technicalQuestions = [
         {
             id: 1,
-            question: "Describe how you would approach designing a user-friendly mobile app for elderly users.",
+            question: "Describe a complex technical problem you've solved. What was your approach and solution?",
             type: "text"
         },
         {
             id: 2,
-            question: "Which programming languages are you most comfortable with?",
+            question: "Which programming languages are you proficient in?",
             type: "multiple",
-            options: ["Python", "JavaScript", "Java", "C++", "Other"]
+            options: ["Python", "JavaScript", "Java", "C++", "Ruby", "PHP", "Go", "Other"]
         },
-        // Add more questions
+        {
+            id: 3,
+            question: "Rate your database management skills:",
+            type: "scale",
+            min: 1,
+            max: 5,
+            labels: ["Beginner", "Expert"]
+        },
+        {
+            id: 4,
+            question: "Which development tools and frameworks do you use regularly?",
+            type: "multiple",
+            options: ["Git", "Docker", "AWS/Cloud", "React/Angular", "Node.js", "Django/Flask", "CI/CD Tools", "Testing Frameworks"]
+        },
+        {
+            id: 5,
+            question: "How comfortable are you with learning new technologies?",
+            type: "scale",
+            min: 1,
+            max: 5,
+            labels: ["Not Comfortable", "Very Comfortable"]
+        },
+        {
+            id: 6,
+            question: "Describe your experience with system architecture and design.",
+            type: "text"
+        },
+        {
+            id: 7,
+            question: "Which areas of technology interest you the most?",
+            type: "multiple",
+            options: ["Web Development", "Mobile Apps", "Data Science", "AI/ML", "DevOps", "Cybersecurity", "Game Development", "IoT"]
+        }
     ];
-    
+
     initializeAssessment('technical', technicalQuestions);
 </script>
 {% endblock %}

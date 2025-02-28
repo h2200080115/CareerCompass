@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Interpersonal Skills Assessment</h2>
-    
+
     <form id="assessment-form" class="mt-4">
         <div class="questions">
             <!-- Questions will be dynamically loaded -->
         </div>
-        
+
         <button type="submit" class="btn btn-primary mt-4">Submit Assessment</button>
     </form>
 </div>
@@ -18,7 +18,7 @@
     const interpersonalQuestions = [
         {
             id: 1,
-            question: "Describe a situation where you had to resolve a conflict between team members. How did you handle it?",
+            question: "Describe a situation where you had to resolve a conflict in a team. How did you handle it?",
             type: "text"
         },
         {
@@ -29,9 +29,38 @@
             max: 5,
             labels: ["Not comfortable", "Very comfortable"]
         },
-        // Add more questions
+        {
+            id: 3,
+            question: "Which communication methods do you prefer?",
+            type: "multiple",
+            options: ["Face-to-face", "Email", "Video calls", "Chat/Messaging", "Phone calls", "Written documentation", "Group presentations", "One-on-one meetings"]
+        },
+        {
+            id: 4,
+            question: "Describe your approach to giving and receiving feedback.",
+            type: "text"
+        },
+        {
+            id: 5,
+            question: "Rate your ability to work in diverse teams:",
+            type: "scale",
+            min: 1,
+            max: 5,
+            labels: ["Need improvement", "Highly skilled"]
+        },
+        {
+            id: 6,
+            question: "Which interpersonal skills are most important in your field?",
+            type: "multiple",
+            options: ["Leadership", "Team collaboration", "Client communication", "Conflict resolution", "Emotional intelligence", "Negotiation", "Mentoring", "Active listening"]
+        },
+        {
+            id: 7,
+            question: "How do you handle stressful situations at work?",
+            type: "text"
+        }
     ];
-    
+
     initializeAssessment('interpersonal', interpersonalQuestions);
 </script>
 {% endblock %}
