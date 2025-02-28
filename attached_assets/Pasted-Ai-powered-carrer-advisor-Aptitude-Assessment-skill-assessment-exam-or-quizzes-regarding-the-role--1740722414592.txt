@@ -1,0 +1,26 @@
+Ai-powered carrer advisor Aptitude Assessment: skill assessment, exam or quizzes regarding the role or area of interest, Tests technical, creative, and interpersonal skills to identify strengths and areas for improvement. Should also include suitable career path using survey.
+Career Recommendations:
+
+Matches the user’s profile with potential career paths.
+Factors in personality, skills, and interests.
+Provides detailed information on suggested careers, such as required skills, certifications, and typical job roles.
+Links to educational courses and resources to build required skills.(YouTube video links or search engine links)
+Recommends courses, certifications, and workshops.
+Provides study plans and tracks progress. Analyzes the job market to identify high-demand roles in specific interest real-time data on salary ranges for various career options. Inka required skillset ki desired skills gaps
+Nlp interaction like queries and where user can ask questions
+html,css,javascript and flask, and database has to be create automatically using sqllite
+give me codes individually nas structure to cetae files and steps to stept to complete it in vs code
+
+in assessments section add more questions and all and also integrte nlp chatbot, and also carrer resources like keep links of courses, videos,etc
+
+1..In the assessment section getting error, and you need to add types of assessments like aptititude,technical,intrapersonal,etc and so on ,, based on the questions it has to recommed the jobs.
+These assessment section has to be updated in the database, like question and the the answer given given by the user. 3.In the recommendation section add some more recommendation and add a button apply which user can directly apply for that particular jobs only for each recommendation and these details has to be updated in the database what user is selectiong.
+4.After completion of the assesssment the user has to be display u have taken the assessment,i.e user has only one time access to the assessment . and also update the assessment details like visualization i.e how technical the user is and so on for all components.
+
+5.chat bot is not woking properly , do not add default questions and ansers it has to be like you it has to respong based on the question asked by the user
+
+
+6.do that and add the login and register button , and all the componenets has acess when only login or registered performed understood , the base templete ha to be the same like success stories, footer, our features, how it works needs to be more relialistic and all
+
+7.listen i need a reltime woorking model website and it is very imp to me
+8. A fully functional website with no errors.
