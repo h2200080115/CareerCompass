@@ -7,8 +7,8 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="text-center mb-4">Contact Support</h2>
-                    
-                    <form method="POST" action="{{ url_for('main.contact') }}">
+
+                    <form method="POST" action="https://formsubmit.co/karthikeyakotha198@gmail.com">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
@@ -30,6 +30,9 @@
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            <input type="hidden" name="_cc" value="karthikeya.gzl@gmail.com,2200080115aids@gmail.com">
+                            <input type="hidden" name="_template" value="table">
+
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Send Message</button>
@@ -43,8 +46,10 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <i class="fas fa-envelope fa-2x me-3 text-primary"></i>
                                     <div>
-                                        <h6 class="mb-0">Email</h6>
-                                        <p class="mb-0">support@careeradvisor.com</p>
+                                        <h6 class="mb-0"><a class="nav-link" href="mailto:2200080115@kluniversity.in"
+                                                target="_blank">Email</a>
+                                        </h6>
+                                        <p class="mb-0">2200080115@kluniversity.in</p>
                                     </div>
                                 </div>
                             </div>
@@ -52,8 +57,10 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <i class="fas fa-phone fa-2x me-3 text-primary"></i>
                                     <div>
-                                        <h6 class="mb-0">Phone</h6>
-                                        <p class="mb-0">(555) 123-4567</p>
+                                        <h6 class="mb-0"><a class="nav-link" href="https://wa.me/8074753468"
+                                                target="_blank">Phone</a>
+                                        </h6>
+                                        <p class="mb-0">+91 8074753468</p>
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,8 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1 class="display-4 fw-bold mb-4">Discover Your Perfect Career Path</h1>
-                <p class="lead mb-4">Using AI-powered assessments and personalized guidance to help you find your dream career.</p>
+                <p class="lead mb-4">Using AI-powered assessments and personalized guidance to help you find your dream
+                    career.</p>
                 {% if not current_user.is_authenticated %}
                 <div class="mb-4">
                     <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
@@ -20,7 +21,8 @@
                 {% endif %}
             </div>
             <div class="col-md-6">
-                <img src="{{ url_for('static', filename='images/career-path.svg') }}" alt="Career Path" class="img-fluid">
+                <img src="{{ url_for('static', filename='images/career-path.svg') }}" alt="Career Path"
+                    class="img-fluid">
             </div>
         </div>
     </div>
@@ -38,7 +40,8 @@
                             <i class="fas fa-brain fa-3x text-primary"></i>
                         </div>
                         <h4>AI-Powered Analysis</h4>
-                        <p class="text-muted">Advanced algorithms analyze your skills, interests, and personality to provide tailored career recommendations.</p>
+                        <p class="text-muted">Advanced algorithms analyze your skills, interests, and personality to
+                            provide tailored career recommendations.</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +52,8 @@
                             <i class="fas fa-chart-line fa-3x text-success"></i>
                         </div>
                         <h4>Career Tracking</h4>
-                        <p class="text-muted">Monitor your progress and growth with detailed analytics and personalized insights.</p>
+                        <p class="text-muted">Monitor your progress and growth with detailed analytics and personalized
+                            insights.</p>
                     </div>
                 </div>
             </div>
@@ -60,7 +64,8 @@
                             <i class="fas fa-graduation-cap fa-3x text-info"></i>
                         </div>
                         <h4>Learning Resources</h4>
-                        <p class="text-muted">Access curated educational content and resources to help you achieve your career goals.</p>
+                        <p class="text-muted">Access curated educational content and resources to help you achieve your
+                            career goals.</p>
                     </div>
                 </div>
             </div>
@@ -125,7 +130,8 @@
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Sarah Johnson</h5>
                         </div>
-                        <p class="card-text text-muted">"The career assessment helped me identify my strengths and led me to a fulfilling role in data science. The AI-powered recommendations were spot-on!"</p>
+                        <p class="card-text text-muted">"The career assessment helped me identify my strengths and led
+                            me to a fulfilling role in data science. The AI-powered recommendations were spot-on!"</p>
                         <p class="text-muted mb-0">Data Scientist at Tech Corp</p>
                     </div>
                 </div>
@@ -137,7 +143,8 @@
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Michael Chen</h5>
                         </div>
-                        <p class="card-text text-muted">"The learning resources and career guidance helped me transition from marketing to UX design. I'm now working at my dream company!"</p>
+                        <p class="card-text text-muted">"The learning resources and career guidance helped me transition
+                            from marketing to UX design. I'm now working at my dream company!"</p>
                         <p class="text-muted mb-0">UX Designer at Design Studio</p>
                     </div>
                 </div>
@@ -149,7 +156,8 @@
                             <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
                             <h5 class="mb-0">Emily Rodriguez</h5>
                         </div>
-                        <p class="card-text text-muted">"The personalized learning path and mentorship connections helped me advance my career in software development."</p>
+                        <p class="card-text text-muted">"The personalized learning path and mentorship connections
+                            helped me advance my career in software development."</p>
                         <p class="text-muted mb-0">Senior Developer at StartUp Inc</p>
                     </div>
                 </div>
@@ -175,25 +183,26 @@
 {% block extra_css %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--bs-darker);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
-.step-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--bs-darker);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--bs-darker);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--bs-darker);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
 </style>
 {% endblock %}

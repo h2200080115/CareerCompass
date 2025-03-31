@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.recommendations') }}">Recommendations</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Apply - {{ career.title }}</li>
+                </ol>
+            </nav>
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="m-0">{{ career.title }}</h3>
+                    <span class="badge bg-primary">{{ "%.1f"|format(career.match_score * 100) }}% Match</span>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted">{{ career.salary_range }}</p>
+
+                    <div class="mb-4">
+                        <h5>Job Description</h5>
+                        <p>{{ career.full_description }}</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>Required Skills</h5>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            {% for skill in career.required_skills %}
+                            <span class="badge bg-secondary">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5>Education Requirements</h5>
+                            <p>{{ career.education_requirements }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Career Growth</h5>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: {{ (career.growth_potential * 100)|round }}%">
+                                    {{ (career.growth_potential * 100)|round }}%
+                                </div>
+                            </div>
+                            <p class="small text-muted">Industry growth potential over 5 years</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h4>Application Form</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('main.submit_application', career_id=career.id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Your basic profile information will be automatically included with this application.
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cover_letter" class="form-label">Cover Letter</label>
+                            <textarea class="form-control" id="cover_letter" name="cover_letter" rows="5"
+                                placeholder="Tell us why you're interested in this position and what makes you a good fit..."
+                                required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="resume" class="form-label">Resume/CV</label>
+                            <input class="form-control" type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"
+                                required>
+                            <div class="form-text">Upload your resume (PDF, DOC, or DOCX format)</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="start_date" class="form-label">Earliest Start Date</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Relevant Experience</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="exp_1" name="experiences[]"
+                                    value="internship">
+                                <label class="form-check-label" for="exp_1">Internship</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="exp_2" name="experiences[]"
+                                    value="entry_level">
+                                <label class="form-check-label" for="exp_2">Entry-level position</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="exp_3" name="experiences[]"
+                                    value="mid_level">
+                                <label class="form-check-label" for="exp_3">Mid-level position</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="exp_4" name="experiences[]"
+                                    value="senior_level">
+                                <label class="form-check-label" for="exp_4">Senior-level position</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="additional_info" class="form-label">Additional Information (Optional)</label>
+                            <textarea class="form-control" id="additional_info" name="additional_info" rows="3"
+                                placeholder="Any other information you'd like us to know..."></textarea>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms_agree" name="terms_agree"
+                                required>
+                            <label class="form-check-label" for="terms_agree">
+                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">terms and
+                                    conditions</a>
+                            </label>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ url_for('main.recommendations') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i> Back to Recommendations
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-1"></i> Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>By submitting this application:</p>
+                <ul>
+                    <li>You certify that all information provided is true and accurate.</li>
+                    <li>You authorize us to verify your qualifications and background.</li>
+                    <li>You understand that any false statements may result in disqualification.</li>
+                    <li>You consent to the processing of your personal data for recruitment purposes.</li>
+                </ul>
+                <p>Your personal information will be handled in accordance with our privacy policy.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Set default date for earliest start date (2 weeks from today)
+    document.addEventListener('DOMContentLoaded', function () {
+        const today = new Date();
+        const twoWeeksFromNow = new Date(today.setDate(today.getDate() + 14));
+        const formattedDate = twoWeeksFromNow.toISOString().split('T')[0];
+        document.getElementById('start_date').value = formattedDate;
+    });
+</script>
+{% endblock %}

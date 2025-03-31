@@ -15,20 +15,23 @@
                     <div class="mt-4">
                         <h6>Your Strengths</h6>
                         <div class="progress mb-3">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ (technical_score/100)*100 }}%" 
-                                 aria-valuenow="{{ technical_score }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                style="width: {{ (technical_score/100)*100 }}%" aria-valuenow="{{ technical_score }}"
+                                aria-valuemin="0" aria-valuemax="100">
                                 Technical ({{ "%.1f"|format(technical_score) }}%)
                             </div>
                         </div>
                         <div class="progress mb-3">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ (creative_score/100)*100 }}%" 
-                                 aria-valuenow="{{ creative_score }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-info" role="progressbar"
+                                style="width: {{ (creative_score/100)*100 }}%" aria-valuenow="{{ creative_score }}"
+                                aria-valuemin="0" aria-valuemax="100">
                                 Creative ({{ "%.1f"|format(creative_score) }}%)
                             </div>
                         </div>
                         <div class="progress mb-3">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ (interpersonal_score/100)*100 }}%" 
-                                 aria-valuenow="{{ interpersonal_score }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                style="width: {{ (interpersonal_score/100)*100 }}%"
+                                aria-valuenow="{{ interpersonal_score }}" aria-valuemin="0" aria-valuemax="100">
                                 Interpersonal ({{ "%.1f"|format(interpersonal_score) }}%)
                             </div>
                         </div>
@@ -67,21 +70,20 @@
                         <div class="mb-3">
                             <h6>Growth Potential</h6>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" 
-                                     style="width: {{ (career.growth_potential * 100)|round }}%">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: {{ (career.growth_potential * 100)|round }}%">
                                     {{ (career.growth_potential * 100)|round }}%
                                 </div>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <button class="btn btn-outline-primary btn-sm" 
-                                    onclick="showCareerDetails('{{ career.id }}')">
+                            <button class="btn btn-outline-primary btn-sm"
+                                onclick="showCareerDetails('{{ career.id }}')">
                                 <i class="fas fa-info-circle"></i> Learn More
                             </button>
-                            <a href="{{ url_for('main.apply_job', career_id=career.id) }}" 
-                               class="btn btn-primary btn-sm">
-                                <i class="fas fa-paper-plane"></i> Apply Now
+                            <a href="https://in.indeed.com/q-data-analytics-ux-design-jobs.html" class="btn btn-primary btn-sm" target="_blank">
+                                <i class="fas fa-paper-plane"></i>Apply Now
                             </a>
                         </div>
                     </div>
@@ -122,12 +124,12 @@
                 label: 'Your Skills',
                 data: [
                     {{ technical_score }},
-                    {{ creative_score }},
+            {{ creative_score }},
                     {{ interpersonal_score }}
                 ],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
             }]
         }
     });
